@@ -1,0 +1,272 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>jSlots Slot Machine - Matthew Lein</title>
+
+<link href='http://fonts.googleapis.com/css?family=Gravitas+One&text=1234567' rel='stylesheet' type='text/css'>
+
+<!-- Syntax highlighting, ignore this -->
+<link rel="stylesheet" href="SyntaxHighlighter/Styles/SyntaxHighlighter.css" type="text/css" media="screen" title="no title" charset="utf-8">
+
+<style type="text/css">
+
+
+ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.jSlots-wrapper {
+    overflow: hidden;
+    height: 20px;
+    display: inline-block; /* to size correctly, can use float too, or width*/
+    border: 1px solid #999;
+}
+
+.slot {
+    float: left;
+}
+
+input[type="button"] {
+    display: block;
+}
+
+/* ---------------------------------------------------------------------
+   FANCY EXAMPLE
+--------------------------------------------------------------------- */
+.fancy .jSlots-wrapper {
+    overflow: hidden;
+    height: 100px;
+    display: inline-block; /* to size correctly, can use float too, or width*/
+    border: 1px solid #999;
+}
+
+.fancy .slot li {
+    width: 100px;
+    line-height: 100px;
+    text-align: center;
+    font-size: 70px;
+    font-weight: bold;
+    color: #fff;
+    text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.8);
+    font-family: 'Gravitas One', serif;
+    border-left: 1px solid #999;
+}
+
+.fancy .slot:first-child li {
+    border-left: none;
+}
+
+.fancy .slot li:nth-child(7),
+.fancy .slot li:nth-child(6),
+.fancy .slot li:nth-child(5),
+.fancy .slot li:nth-child(4),
+.fancy .slot li:nth-child(3),
+.fancy .slot li:nth-child(2), 
+.fancy .slot li:nth-child(1),
+.fancy .slot li:nth-child(8) {
+    background-color: #FFFFFF;
+}
+
+.fancy .slot li span {
+    display: block;
+}
+
+/* ---------------------------------------------------------------------
+   ANIMATIONS
+--------------------------------------------------------------------- */
+
+@-webkit-keyframes winner {
+        0%, 50%, 100% {
+            -webkit-transform: rotate(0deg);
+            font-size:70px;
+            color: #fff;
+        }
+        25% {
+            -webkit-transform: rotate(20deg);
+            font-size:90px;
+            color: #33a0b7;
+        }
+        75% {
+            -webkit-transform: rotate(-20deg);
+            font-size:90px;
+            color: #FACC2E;
+        }
+}
+@-moz-keyframes winner {
+        0%, 50%, 100% {
+            -moz-transform: rotate(0deg);
+            font-size:70px;
+            color: #fff;
+        }
+        25% {
+            -moz-transform: rotate(20deg);
+            font-size:90px;
+            color: #33a0b7;
+        }
+        75% {
+            -moz-transform: rotate(-20deg);
+            font-size:90px;
+            color: #FACC2E;
+        }
+}
+@-ms-keyframes winner {
+        0%, 50%, 100% {
+            -ms-transform: rotate(0deg);
+            font-size:70px;
+            color: #fff;
+        }
+        25% {
+            -ms-transform: rotate(20deg);
+            font-size:90px;
+            color: #33a0b7;
+        }
+        75% {
+            -ms-transform: rotate(-20deg);
+            font-size:90px;
+            color: #FACC2E;
+        }
+}
+
+
+@-webkit-keyframes winnerBox {
+        0%, 50%, 100% {
+            box-shadow: inset 0 0  0px #A9E2F3;
+            background-color: #F0CA4E;
+        }
+        25%, 75% {
+            box-shadow: inset 0 0 30px #A9E2F3;
+            background-color: #F0CA4E;
+        }
+}
+@-moz-keyframes winnerBox {
+        0%, 50%, 100% {
+            box-shadow: inset 0 0  0px #A9E2F3;
+            background-color: #F0CA4E;
+        }
+        25%, 75% {
+            box-shadow: inset 0 0 30px #A9E2F3;
+            background-color: #F0CA4E;
+        }
+}
+@-ms-keyframes winnerBox {
+        0%, 50%, 100% {
+            box-shadow: inset 0 0  0px #A9E2F3;
+            background-color: #F0CA4E;
+        }
+        25%, 75% {
+            box-shadow: inset 0 0 30px #A9E2F3;
+            background-color: #F0CA4E;
+        }
+}
+
+
+
+.winner li {
+    -webkit-animation: winnerBox 2s infinite linear;
+       -moz-animation: winnerBox 2s infinite linear;
+        -ms-animation: winnerBox 2s infinite linear;
+}
+.winner li span {
+     -webkit-animation: winner 2s infinite linear;
+        -moz-animation: winner 2s infinite linear;
+         -ms-animation: winner 2s infinite linear;
+}
+
+/* Syntax Highlighter, ignore */
+.dp-highlighter ol {
+    padding: 10px;
+}
+
+</style>
+
+
+
+</head>
+<body>
+    <img src="img/gold-64.png" style="display:block; margin:auto;"> 
+    <div id="wrapper" style=" 
+                            position:absolute;
+                            left:50%;
+                            top:50%;
+                            margin:-75px 0 0 -160px;">
+        <div id="content">
+             <div class="fancy">
+                <ul class="slot">
+                    <!-- In reverse order so the 7s show on load -->
+                    <li><span><img src="img/gold-64.png"></span></li>
+                    <li><span><img src="img/cash-64.png"></span></li>
+                    <li><span><img src="img/energy-64.png"></span></li>
+                    <li><span><img src="img/cash-64.png"></span></li>
+                    <li><span><img src="img/goods-64.png"></span></li>
+                    <li><span><img src="img/staff-64.png"></span></li>
+                    <li><span><img src="img/cash-64.png"></span></li>
+                </ul>
+                <input type="button" id="playFancy" value="Play" style="display: block;
+                                                                        margin: auto">
+            </div>
+
+        </div>
+    </div>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script src="jquery.easing.1.3.js" type="text/javascript" charset="utf-8"></script>
+    <script src="jquery.jSlots.min.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" charset="utf-8">
+
+         normal example
+            $('.normal .slot').jSlots({
+                spinner : '#playFancy',
+                winnerNumber : 7,
+                endNumbers: []
+            });
+        
+
+        // fancy example
+        $('.fancy .slot').jSlots({
+            number : 3,
+            winnerNumber : 1,
+            spinner : '#playFancy',
+            easing : 'easeOutSine',
+            time : 7000,
+            loops : 6,
+            endNumbers: [7, 7, 7],
+            onStart : function() {
+                $('.slot').removeClass('winner');
+            },
+            onWin : function(winCount, winners, finalNumbers) {
+                // only fires if you win
+
+                $.each(winners, function() {
+                    this.addClass('winner');
+                });
+
+                // react to the # of winning slots
+                if ( winCount === 1 ) {
+                    alert('You got ' + winCount + ' 7!!!');
+                } else if ( winCount > 1 ) {
+                    alert('You got ' + winCount + ' 7’s!!!');
+                }
+
+            }
+        });
+
+
+    </script>
+
+    <!-- Syntax highlighting, ignore this -->
+    <script src="SyntaxHighlighter/Scripts/shCore.js" type="text/javascript" charset="utf-8"></script>
+    <script src="SyntaxHighlighter/Scripts/shBrushCss.js" type="text/javascript" charset="utf-8"></script>
+    <script src="SyntaxHighlighter/Scripts/shBrushJScript.js" type="text/javascript" charset="utf-8"></script>
+    <script src="SyntaxHighlighter/Scripts/shBrushXml.js" type="text/javascript" charset="utf-8"></script>
+    <script language="javascript">
+        dp.SyntaxHighlighter.ClipboardSwf = '/flash/clipboard.swf';
+        dp.SyntaxHighlighter.HighlightAll('code', false, false )//, [collapseAll], [firstLine], [showColumns] );
+        //HighlightAll(name, [showGutter], [showControls], [collapseAll], [firstLine], [showColumns])
+    </script>
+    <!-- /Syntax highlighting -->
+
+</body>
+</html>
